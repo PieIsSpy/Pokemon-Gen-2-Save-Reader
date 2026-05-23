@@ -1,9 +1,7 @@
 package main
 
 import (
-	"encoding/binary"
-	"fmt"
-	"io"
+	"Pokemon_Gen_2_Save_Reader/data_structures"
 	"log"
 	"os"
 )
@@ -14,14 +12,11 @@ func main() {
 		log.Fatal(err)
 	}
 
-	_, err = fp.Seek(0x2009, io.SeekStart)
+	trainer, err := data_structures.ReadTrainer(fp)
 	if err != nil {
-		return
+		println(err.Error())
 	}
-
-	data := make([]byte, 2)
-	TID, err := fp.Read(data)
-	fmt.Println("Trainer ID:", binary.BigEndian.Uint16(data[:TID]))
+	data_structures.PrintTrainer(trainer)
 
 	defer func(fp *os.File) {
 		err := fp.Close()
