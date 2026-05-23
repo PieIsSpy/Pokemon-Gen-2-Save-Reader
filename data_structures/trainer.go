@@ -9,8 +9,8 @@ import (
 )
 
 type Trainer struct {
-	Name []byte
-	TID  []byte
+	Name [11]byte
+	TID  [2]byte
 }
 
 func ReadTrainer(fp *os.File) (*Trainer, error) {
@@ -24,7 +24,7 @@ func ReadTrainer(fp *os.File) (*Trainer, error) {
 
 	tidData := make([]byte, 2)
 	_, err = fp.Read(tidData)
-	trainer.TID = tidData
+	trainer.TID = [2]byte(tidData)
 
 	// go to 0x200B and read the Trainer Name
 	_, err = fp.Seek(0x200B, io.SeekStart)
@@ -34,12 +34,12 @@ func ReadTrainer(fp *os.File) (*Trainer, error) {
 
 	nameData := make([]byte, 11)
 	_, err = fp.Read(nameData)
-	trainer.Name = nameData
+	trainer.Name = [11]byte(nameData)
 
 	return &trainer, nil
 }
 
 func PrintTrainer(trainer *Trainer) {
-	fmt.Println("Name:", character_encoding.ConvertString(trainer.Name))
-	fmt.Println("Trainer ID:", binary.BigEndian.Uint16(trainer.TID))
+	fmt.Println("Name:", character_encoding.ConvertString(trainer.Name[:]))
+	fmt.Println("Trainer ID:", binary.BigEndian.Uint16(trainer.TID[:]))
 }
