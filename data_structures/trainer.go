@@ -8,11 +8,13 @@ import (
 	"os"
 )
 
+// Trainer struct stores the Name and TID of the Trainer.
 type Trainer struct {
 	Name [11]byte
 	TID  [2]byte
 }
 
+// ReadTrainer reads the Trainer info from the save file.
 func ReadTrainer(fp *os.File) (*Trainer, error) {
 	var trainer Trainer
 
@@ -39,6 +41,7 @@ func ReadTrainer(fp *os.File) (*Trainer, error) {
 	return &trainer, nil
 }
 
+// PrintTrainer prints the Name and TID of the given Trainer
 func PrintTrainer(trainer *Trainer) {
 	fmt.Println("Name:", character_encoding.ConvertString(trainer.Name[:]))
 	fmt.Println("Trainer ID:", binary.BigEndian.Uint16(trainer.TID[:]))
