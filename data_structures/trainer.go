@@ -10,9 +10,9 @@ import (
 
 // Trainer struct stores the Name and TID of the Trainer.
 type Trainer struct {
-	// The name of the Trainer
+	// Name is the name of the Trainer
 	Name [11]byte
-	// The ID number of the Trainer
+	// TID is ID number of the Trainer
 	TID [2]byte
 }
 

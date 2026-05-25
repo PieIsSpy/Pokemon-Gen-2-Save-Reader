@@ -7,19 +7,31 @@ import (
 	"strconv"
 )
 
+// PokemonSpecies stores all the Species' Info like Pokedex Number, Name, Types and Base Stats.
 type PokemonSpecies struct {
-	DexNum   int
-	Name     string
-	Type1    string
-	Type2    string
-	BaseHP   int
-	BaseAtk  int
-	BaseDef  int
-	BaseSpd  int
+	// DexNum is the Pokedex number of the Species
+	DexNum int
+	// Name is the name of the Species
+	Name string
+	// Type1 is the first type of the Species
+	Type1 string
+	// Type2 is the second type of the Species
+	Type2 string
+	// BaseHP is the Base HP of the Species
+	BaseHP int
+	// BaseAtk is the Base Attack of the Species
+	BaseAtk int
+	// BaseDef is the Base Defense of the Species
+	BaseDef int
+	// BaseSpd is the Base Speed of the Species
+	BaseSpd int
+	// BaseSAtk is the Base Sp. Attack of the Species
 	BaseSAtk int
+	// BaseSDef is the Base Sp. Defense of the Species
 	BaseSDef int
 }
 
+// FetchSpeciesInfo fetches the PokemonSpecies of a given species index
 func FetchSpeciesInfo(index byte) *PokemonSpecies {
 	file, _ := os.Open("pkmn2.csv")
 	var speciesInfo PokemonSpecies
