@@ -10,8 +10,10 @@ import (
 
 // Trainer struct stores the Name and TID of the Trainer.
 type Trainer struct {
+	// The name of the Trainer
 	Name [11]byte
-	TID  [2]byte
+	// The ID number of the Trainer
+	TID [2]byte
 }
 
 // ReadTrainer reads the Trainer info from the save file.
